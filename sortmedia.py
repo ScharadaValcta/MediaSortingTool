@@ -260,7 +260,7 @@ for files in filesext:
     for folder in splittedpath:
         if folder in folderwillbeignored:
             ignore = True
-        elif folder.lower() in notinfoldernameallowed or folder in notinfoldernameallowed :
+        elif folder.lower() in notinfoldernameallowed or folder in notinfoldernameallowed or folder.isnumeric() or (folder.startswith("-") and folder[1:].isnumeric()):
             continue
         elif newfoldername == "" and folder == splittedpath[-1]:
             newfoldername = "ZZZ"
@@ -355,7 +355,8 @@ for files in filesext:
             if checkvaliddate(datum[0:4],datum[5:7]):
                 newpath = "/" + datum[0:4] + "/" + datum[5:7] + "/"
         newfiles = "/4TB/medien/" + newpath[1:] + newfoldername
-        if files != newfiles + "/" + filename and not newfoldername.startswith("/4TB/medien/20"):
+        #newfiles = newpath[1:] + newfoldername
+        if files != newfiles + "/" + filename and not newfoldername.startswith("/4TB/medien/20") and files.startswith("20"):
             print(files)
             print(newfiles + "/" + filename)
             #print(files)

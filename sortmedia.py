@@ -231,7 +231,7 @@ def alternatedestinationpath(destination_path):
 
 #Hier wurde vergessen zu prüfen ob der pfad eine datei oder ein ordner ist. das müsste man noch einbauen
 #es fässt auch keine dateien an die keine datei endung haben
-filesext = glob.glob('**/*.*', recursive=True)
+filesext = glob.glob('**/*', recursive=True)
 
 #Path generation
 years = ["2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022","2023"]
@@ -251,6 +251,9 @@ allfoldername = []
 
 for files in filesext:
     ignore = False
+    if not os.path.isfile(files):
+        ignore = True
+        continue
     splittedpath = files.split("/")
     #Foldername generation
     newfoldername = ""
